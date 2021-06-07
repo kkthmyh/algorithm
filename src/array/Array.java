@@ -25,15 +25,15 @@ public class Array<E> {
         this(10);
     }
 
-    private int getSize() {
+    public int getSize() {
         return size;
     }
 
-    private int getCapacity() {
+    public int getCapacity() {
         return data.length;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -91,6 +91,15 @@ public class Array<E> {
         return data[index];
     }
 
+    public E getLast() {
+        return data[size - 1];
+    }
+
+    public E getFirst() {
+        return data[0];
+    }
+
+
     /**
      * set
      *
@@ -141,13 +150,12 @@ public class Array<E> {
      * @return
      */
     public E remove(int index) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Index is error.");
         }
         E e = data[index];
-        for (int i = index + 1; i <= size; i++) {
+        for (int i = index + 1; i < size; i++) {
             data[i - 1] = data[i];
-
         }
         size--;
         if (size == data.length / 4 && data.length / 2 != 0) {
@@ -177,11 +185,18 @@ public class Array<E> {
 
     @Override
     public String toString() {
-        return "Array{" +
-                "data=" + Arrays.toString(data) +
-                ", size=" + size +
-                ", capacity=" + data.length +
-                '}';
+
+        StringBuilder res = new StringBuilder();
+        res.append(String.format("Array: size = %d , capacity = %d\n", size, data.length));
+        res.append('[');
+        for (int i = 0; i < size; i++) {
+            res.append(data[i]);
+            if (i != size - 1) {
+                res.append(", ");
+            }
+        }
+        res.append(']');
+        return res.toString();
     }
 
     /**
