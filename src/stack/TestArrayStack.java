@@ -18,9 +18,11 @@ public class TestArrayStack {
         System.out.println(arrayStack.toString());
 
         Integer pop1 = arrayStack.pop();
-        Integer pop2 = arrayStack.pop();
         System.out.println(pop1);
+        System.out.println(arrayStack.toString());
+        Integer pop2 = arrayStack.pop();
         System.out.println(pop2);
+        System.out.println(arrayStack.toString());
 
 
         int capacity = arrayStack.getCapacity();
